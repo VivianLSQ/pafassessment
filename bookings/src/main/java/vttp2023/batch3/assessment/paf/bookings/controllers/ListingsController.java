@@ -13,13 +13,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import jakarta.servlet.http.HttpSession;
 import vttp2023.batch3.assessment.paf.bookings.models.Listings;
 import vttp2023.batch3.assessment.paf.bookings.models.User;
-import vttp2023.batch3.assessment.paf.bookings.repositories.ListingsRepository;
 import vttp2023.batch3.assessment.paf.bookings.services.ListingsService;
 
 @Controller
@@ -50,30 +48,32 @@ public class ListingsController {
 	
 	//Task 3
 	@GetMapping(path="/listings")
-	public ModelAndView displayListingsByCountry(@RequestParam listing) {
+	public ModelAndView displayListingsByCountry(@RequestBody Listings listings ) {
 
-		List<Listings> listing= listingSvc.getListingsByCountry(addresss);
+		List<Listings> listing= listingSvc.displayListingsByCountry(listings);
 
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("landingPage");
-		mav.addObject("country", user);
-		mav.addObject("numberOfPerson", user);
-		mav.addObject("priceRange", user);
+		mav.setViewName("listings");
+		mav.addObject("address", listing);
+		mav.addObject("price", listing);
+		mav.addObject("image", listing);
+		mav.addObject("details", listing);
 		mav.setStatus(HttpStatusCode.valueOf(200));
 
 		return mav;
 	}
 
 	//Task 4
-	@PostMapping(path="/reservation", consumes=MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-    public ResponseEntity<String> search(@RequestBody MultiValueMap<String, String> values, @ModelAttribute User country ) {
-        if (listingSvc.search(values)) {
+	@PostMapping(path="/reservation/saveBooking", consumes=MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    public ResponseEntity<String> postSelectedListing(@RequestBody MultiValueMap<String, String> values ) {
+        if (listingSvc.postSelectedListing(values)) {
             return new ResponseEntity<String>(HttpStatusCode.valueOf(200));
         }
         else {
             return new ResponseEntity<String>(HttpStatusCode.valueOf(400));
         }
     }
+
 	//To save booking using PostMapping and Update(?)
 
 	//Task 5

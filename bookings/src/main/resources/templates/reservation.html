@@ -49,7 +49,8 @@
     <h1>Booking Details</h1>
     </br/>
 
-    <form action="#" th:action="@{/booking/saveBooking}" th:object="${booking}" method="POST">
+    <form action="#" th:action="@{/reservation/saveBooking}" th:object="${booking}" method="POST">
+      <input type="hidden" name="resv_id" th:value="*{resv_id}">
       <div>
         <label for="customerName">Customer Name</label>
         <br />

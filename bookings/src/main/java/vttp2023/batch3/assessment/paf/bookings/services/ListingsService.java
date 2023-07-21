@@ -33,8 +33,8 @@ public class ListingsService {
 
 	
 	//Task 3
-	public List<Listings> getListingsByCountry(String type, int limit, int skip) {
-		return listingRepo.getListingsByCountry(type, limit, skip).stream()
+	public List<Listings> displayListingsByCountry(Listings listings) {
+		return listingRepo.displayListingsByCountry(listings).stream()
 			.map(d -> {
 				return new Listings(
 						d.getString("address"),
@@ -45,6 +45,7 @@ public class ListingsService {
 			})
 			.toList();
 	}
+
 
 
 	//Task 4
@@ -60,6 +61,11 @@ public class ListingsService {
 			))
 			.toList();
 	}
+
+
+    public boolean postSelectedListing(MultiValueMap<String, String> values) {
+        return false;
+    }
 
 
 	//Task 5

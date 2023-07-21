@@ -80,6 +80,11 @@ public class ListingsRepository {
 	public Collection<ListingDetails> getReservationDetails(String _id, String description, String address, String image,
 			String price, String amenities) {
 		return null;
+	}
+
+
+	public Collection<User> displayListingsByCountry() {
+		return null;
 	} 
 	
 
