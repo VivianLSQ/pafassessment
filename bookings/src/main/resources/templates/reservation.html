@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reservation Page</title>
+  </head>
+  <body>
+    <!--Back to View 2: search results from original criteria-->
+
+    <!--To include selected listing with resv_id in a table format-->
+
+    <h1>Booking Details</h1>
+    <br />
+    <form action="#" th:action="@{/booking/saveBooking}" th:object="${booking}" method="POST">
+      <div>
+        <label for="customerName">Customer Name</label>
+        <br />
+        <input
+          type="text"
+          th:field="*{customerName}"
+          placeholder="Enter your name here"
+        />
+      </div>
+      <br />
+      <div>
+        <label for="email">Email</label>
+        <br />
+        <input
+          type="email"
+          th:field="*{email}"
+          placeholder="Enter your email address here"
+        />
+      </div>
+      <br />
+      <div>
+        <label for="arrivalDate">Arrival Date</label>
+        <br />
+        <input
+          type="date"
+          th:field="*{arrivalDate}"
+          placeholder="Enter Arrival Date here"
+        />
+      </div>
+      <br />
+      <div>
+        <label for="durationOfStay">Duration of Stay</label>
+        <br />
+        <input
+          type="number"
+          th:field="*{durationOfStay}"
+          placeholder="Enter Duration of Stay here (days)"
+        />
+      </div>
+
+      <br /><br />
+      <button type="submit">Book</button>
+    </form>
+  </body>
+</html>
