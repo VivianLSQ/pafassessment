@@ -2,6 +2,29 @@
 -- Do not modify the contents of this file
 --
 
+/*
+create database mybnb; 
+
+use mybnb; 
+
+
+create table acc_occupancy(
+ acc_id varchar(10) not null,
+ vacancy varchar(250) not null,
+ constraint pk_acc_id primary key (acc_id)
+); 
+
+
+create table reservations(
+	resv_id varchar(8) not null, 
+    customer_name varchar(128) not null, 
+    customer_email varchar(128) not null,
+    arrival_date date not null, 
+    duration varchar(100), 
+    constraint fk_resv_id foreign key(resv_id) references acc_occupancy(acc_id)
+);
+*/
+
 INSERT INTO acc_occupancy(acc_id,vacancy) VALUES
  ('13591144',100)
 ,('27498126',100)

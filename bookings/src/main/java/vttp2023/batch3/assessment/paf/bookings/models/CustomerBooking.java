@@ -6,23 +6,30 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotEmpty;
+
 //this is for the sql portion (must match!)
 public class CustomerBooking {
 
+    @NotEmpty(message= "This name field is mandatory")
     private String customerName; 
 
+    @Email(message= "Email keyed in must be valid")
     private String email; 
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @JsonFormat(pattern = "DD/MM/YYYY")
     private Date arrivalDate; 
    
+     @NotEmpty(message= "Please key in your duration of stay")
     private Integer durationOfStay;
 
+    
     public String getCustomerName() {
         return customerName;
     }
-    
+
     public void setCustomerName(String customerName) {
         this.customerName = customerName;
     }
