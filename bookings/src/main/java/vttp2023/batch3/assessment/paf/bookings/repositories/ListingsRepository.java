@@ -17,6 +17,7 @@ import org.springframework.data.mongodb.core.aggregation.SortOperation;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 
+import vttp2023.batch3.assessment.paf.bookings.models.CustomerBooking;
 import vttp2023.batch3.assessment.paf.bookings.models.ListingDetails;
 import vttp2023.batch3.assessment.paf.bookings.models.Listings;
 import vttp2023.batch3.assessment.paf.bookings.models.User;
@@ -85,10 +86,18 @@ public class ListingsRepository {
 
 	public Collection<User> displayListingsByCountry() {
 		return null;
-	} 
-	
+	}
+
 
 	//Task 5
+	public Boolean update(CustomerBooking custB) {
+		return null;
+	}
+
+
+    public CustomerBooking findById(int id) {
+        return null;
+    } 
 
 
 }

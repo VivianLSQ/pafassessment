@@ -12,6 +12,8 @@ import jakarta.validation.constraints.NotEmpty;
 //this is for the sql portion (must match!)
 public class CustomerBooking {
 
+    private String reservationId; 
+
     @NotEmpty(message= "This name field is mandatory")
     private String customerName; 
 
@@ -25,6 +27,14 @@ public class CustomerBooking {
      @NotEmpty(message= "Please key in your duration of stay")
     private Integer durationOfStay;
 
+
+     public String getReservationId() {
+        return reservationId;
+    }
+
+    public void setReservationId(String reservationId) {
+        this.reservationId = reservationId;
+    }
     
     public String getCustomerName() {
         return customerName;

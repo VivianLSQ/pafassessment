@@ -10,14 +10,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import jakarta.servlet.http.HttpSession;
+import vttp2023.batch3.assessment.paf.bookings.models.CustomerBooking;
 import vttp2023.batch3.assessment.paf.bookings.models.Listings;
 import vttp2023.batch3.assessment.paf.bookings.models.User;
+import vttp2023.batch3.assessment.paf.bookings.repositories.ListingsRepository;
 import vttp2023.batch3.assessment.paf.bookings.services.ListingsService;
 
 @Controller
@@ -26,6 +30,9 @@ public class ListingsController {
 
 	@Autowired
 	ListingsService listingSvc; 
+
+	@Autowired
+	ListingsRepository listingRepo; 
 
 
 	//Task 2
@@ -72,11 +79,24 @@ public class ListingsController {
         else {
             return new ResponseEntity<String>(HttpStatusCode.valueOf(400));
         }
+		//To save booking using PostMapping and Update(?)
     }
 
-	//To save booking using PostMapping and Update(?)
-
 	//Task 5
+	@PutMapping("/{resv_id}")
+	public ResponseEntity<Boolean> updateReservationWithCustomerDetails(@PathVariable("resv_id") int id, @RequestBody CustomerBooking booking){
+		CustomerBooking custB = listingRepo.findById(id);
 
+		Boolean bUpdated = false; 
+		if (custB !=null){
+			bUpdated = listingRepo.update(custB); 
+		}
+		if (bUpdated){
+			return ResponseEntity.ok().body(bUpdated);
+		}
+
+		return ResponseEntity.ofNullable(bUpdated); 
+
+	}
 
 }
