@@ -10,14 +10,16 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.aggregation.Aggregation;
 import org.springframework.data.mongodb.core.aggregation.AggregationResults;
-import org.springframework.data.mongodb.core.aggregation.GroupOperation;
+//import org.springframework.data.mongodb.core.aggregation.GroupOperation;
 import org.springframework.data.mongodb.core.aggregation.MatchOperation;
 import org.springframework.data.mongodb.core.aggregation.ProjectionOperation;
 import org.springframework.data.mongodb.core.aggregation.SortOperation;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 
+import vttp2023.batch3.assessment.paf.bookings.models.ListingDetails;
 import vttp2023.batch3.assessment.paf.bookings.models.Listings;
+import vttp2023.batch3.assessment.paf.bookings.models.User;
 import vttp2023.batch3.assessment.paf.bookings.services.ListingsService;
 
 public class ListingsRepository {
@@ -41,15 +43,12 @@ public class ListingsRepository {
 	})
 	*/
 
-	public List<Document> findListingByCountry(Object...countryList){
-		Criteria criteria = Criteria.where(F_ADDRESS).regex(null“Australia”, “i”); 
+	public List<Document> findListingsByCountry(User country){
+		Criteria criteria = Criteria.where("address").regex("Australia"); 
 		Query query = Query.query(criteria); 
-		return template.find(query. Document.class, "listings"); 
+		return template.find(query, Document.class, "listings"); 
 	}
 
-	public Collection<Listings> getListingsByCountry(String type, int limit, int skip) {
-		return null;
-	}
 	
 	//Task 3
 	/* 
@@ -61,7 +60,7 @@ public class ListingsRepository {
    		 	{$sort: {'price':-1}}  
 		])
 	*/
-	//Filter by price Range and country and Number of Persons
+	//Filter by price Range and Number of Persons (Yet to add country)
 	MatchOperation matchByPriceRangeAndPax = Aggregation.match(Criteria.where(F_PRICERANGE).gte(100).lte(250)
 																.and("accommodates").is(2)); 
 	
@@ -72,11 +71,16 @@ public class ListingsRepository {
 
 	Aggregation pipeline = Aggregation.newAggregation(projectListingResult, sortByPrice);
 
-	AggregationResults<Document> results = template.aggregate(pipeline, C_LISTINGS, Document.class); 
+	AggregationResults<Document> results = template.aggregate(pipeline, C_LISTINGS, Document.class);
 	
 
 	//Task 4
 
+
+	public Collection<ListingDetails> getReservationDetails(String _id, String description, String address, String image,
+			String price, String amenities) {
+		return null;
+	} 
 	
 
 	//Task 5

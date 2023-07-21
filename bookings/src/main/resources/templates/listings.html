@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listings aka View 2</title>
+</head>
+<body>
+    <h3> Listing for <span data-th-text="${address}"> </span> </h3>
+    <a data-th-href="@{/landingPage}">Back to Index</a>
+
+    <div></div>
+    <table>
+        <thead>
+            <tr>
+                <td>Address</td>
+                <td>Price</td>
+                <td>Image</td>
+                <td>Details</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr data-th-each="listings : ${address}" data-th-object="${listings}">
+                <td data-th-text="*{name}"></td>
+                <td data-th-text="*{price}"></td>
+                <td>
+                    <img data-th-src="*{img}" data-th-alt="*{address}">
+                </td>
+                <td> <type="submit"> Details</type></td>
+                <td>
+                    <p>Accomodation ID: <span data-th-text="*{resv.accId}"></span></p>
+                    <p>Description : <span data-th-text="*{resv.description}"></span></p>
+                    <p>Address : <span data-th-text="*{resv.address}"></span></p>
+                    <p>Image : <span data-th-text="*{resv.image}"></span></p>
+                    <p>Price : <span data-th-text="*{resv.price}"></span></p>
+                    <p>Amenities : <span data-th-text="*{resv.amenities}"></span></p>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    
+    
+</body>
+</html>

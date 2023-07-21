@@ -3,15 +3,52 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Reservation Page</title>
+    <title>Reservation Page aka View 3</title>
   </head>
   <body>
     <!--Back to View 2: search results from original criteria-->
+    <br />
+    <a data-th-href="@{/listings}">Back to All Listings</a>
 
     <!--To include selected listing with resv_id in a table format-->
+    <div> 
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Description</th>
+          <th>Address</th>
+           <th>Price</th>
+          <th>Amenities</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="listingDetails :${listOfBooking}">
+          <td>
+            [[${listingDetails.id}]]
+          </td>
+          <td>
+            [[${listingDetails.description}]] 
+            <!--find out how to display adjacent in line image-->
+          </td>
+          <td>
+            [[${listingDetails.address}]]
+          </td>
+          <td>
+            [[${listingDetails.price}]]
+          </td>
+          <td>
+            [[${listingDetails.amenities}]]
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+    </table>
 
     <h1>Booking Details</h1>
-    <br />
+    </br/>
+
     <form action="#" th:action="@{/booking/saveBooking}" th:object="${booking}" method="POST">
       <div>
         <label for="customerName">Customer Name</label>
@@ -39,7 +76,7 @@
         <input
           type="date"
           th:field="*{arrivalDate}"
-          placeholder="Enter Arrival Date here"
+          placeholder="Enter Arrival Date here (DD/MM/YYYY)"
         />
       </div>
       <br />
