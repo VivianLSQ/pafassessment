@@ -79,7 +79,7 @@ public class ListingsController {
         else {
             return new ResponseEntity<String>(HttpStatusCode.valueOf(400));
         }
-		//To save booking using PostMapping and Update(?)
+		//To save booking use PostMapping 
     }
 
 	//Task 5
