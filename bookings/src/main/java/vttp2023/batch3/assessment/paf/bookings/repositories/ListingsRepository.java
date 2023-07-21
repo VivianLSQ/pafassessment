@@ -36,6 +36,7 @@ public class ListingsRepository {
 	public static final String F_PAX ="numberOfPerson";
 	public static final String F_PRICERANGE ="priceRange";
 	public static final String C_LISTINGS= "listings"; 
+	public static final String F_ACCID="accId"; 
 
 	//Task 2: 
 
@@ -82,7 +83,7 @@ public class ListingsRepository {
 	 * db.listings.findOne({ _id: _id })
 	 */
 	public Optional<Document> findListingByObjectId(Integer _id) {
-		Criteria criteria = Criteria.where(_id).is(_id);
+		Criteria criteria = Criteria.where(F_ACCID).is(_id);
 
 		Query query = Query.query(criteria);
 
