@@ -2,6 +2,7 @@ package vttp2023.batch3.assessment.paf.bookings.repositories;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,8 +77,21 @@ public class ListingsRepository {
 	
 
 	//Task 4
-	
 
+	/*
+	 * db.listings.findOne({ _id: _id })
+	 */
+	public Optional<Document> findListingByObjectId(Integer _id) {
+		Criteria criteria = Criteria.where(_id).is(_id);
+
+		Query query = Query.query(criteria);
+
+		List<Document> result = template.find(query, Document.class, Constants.C_GAMES);
+		if (result.isEmpty())
+			return Optional.empty();
+
+		return Optional.of(result.get(0));
+	}
 
 	public Collection<ListingDetails> getReservationDetails(String _id, String description, String address, String image,
 			String price, String amenities) {
