@@ -76,6 +76,7 @@ public class ListingsRepository {
 	
 
 	//Task 4
+	
 
 
 	public Collection<ListingDetails> getReservationDetails(String _id, String description, String address, String image,

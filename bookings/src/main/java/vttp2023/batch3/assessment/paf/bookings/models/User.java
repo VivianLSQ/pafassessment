@@ -1,5 +1,7 @@
 package vttp2023.batch3.assessment.paf.bookings.models;
 
+import org.bson.Document;
+
 import jakarta.validation.constraints.DecimalMax;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Max;
@@ -62,4 +64,17 @@ public class User {
     public String toString() {
         return "User [country=" + country + ", numberOfPerson=" + numberOfPerson + ", priceRange=" + priceRange + "]";
     }
+
+    public String getString(String string) {
+        return null;
+    }
+
+    public Float getFloat(String string) {
+        return null;
+    }
+
+    public Document get(String string, Class<Document> class1) {
+        return null;
+    }
+
 }

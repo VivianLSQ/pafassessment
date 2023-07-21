@@ -28,13 +28,13 @@ public class ListingsService {
 					d.getInteger("numberOfPerson"),
 					d.getFloat("priceRange")
 				))
-				.toList(); 
+			.toList(); 
 	}
 
 	
 	//Task 3
 	public List<Listings> displayListingsByCountry(Listings listings) {
-		return listingRepo.displayListingsByCountry(listings).stream()
+		return listingRepo.displayListingsByCountry().stream()
 			.map(d -> {
 				return new Listings(
 						d.getString("address"),
