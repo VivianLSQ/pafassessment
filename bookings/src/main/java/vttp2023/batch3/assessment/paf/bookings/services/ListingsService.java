@@ -26,7 +26,7 @@ public class ListingsService {
 				.map(d -> new User(
 					d.getString("country"),
 					d.getInteger("numberOfPerson"),
-					d.getFloat("priceRange")
+					d.getInteger("priceRange")
 				))
 			.toList(); 
 	}
